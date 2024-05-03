@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>$id$</id>
+    <version>$version$</version>
+    <title>$title$</title>
+    <authors>$author$</authors>
+    <owners>$author$</owners>
+    <licenseUrl>http://www.lucidocean.co.za/wbl-license.html</licenseUrl>
+    <projectUrl>http://www.lucidocean.co.za/wbl-license.html</projectUrl>
+    <iconUrl>http://www.lucidocean.co.za/worldcup-icon.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Lucid Ocean Rule Engine</description>
+    <releaseNotes>None</releaseNotes>
+    <copyright>Copyright 2015, Lucid Ocean PTY (LTD)</copyright>
+    <tags>RULE ENGINE</tags>
+  </metadata>
+</package>
