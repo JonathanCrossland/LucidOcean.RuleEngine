@@ -27,6 +27,8 @@ Validation and Rules surrounding a form post with data
 
 Every action can contain whatever code it requires, conditional statements, switches, data read / write and then the next action is executed.
 
+The more contextless or atomic each action is, the better. Yes, you can rely on the state, which is passed between actions and can muddy the waters, making a complex debugging task, or you can maintain the state cleanly and allow for any action to be added in any sequential order. The kind pf Temporal/functional/process cohesion you achieve is up to you.
+
 ## Hints for the design
 
 Think of a composite/command/template method pattern for a workflow pipeline.
