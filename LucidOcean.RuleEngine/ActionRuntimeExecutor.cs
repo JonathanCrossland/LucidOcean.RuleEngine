@@ -80,6 +80,9 @@ namespace LucidOcean.RuleEngine
             if (found < 0)
                 found = 0;
 
+            _State.Context.Runtime.BeginProgress(found, _State.Actions.Count);
+            
+
             for (int i = found; i < _State.Actions.Count; i++)
             {
                 IAction action = _State.Actions[i];
@@ -87,7 +90,10 @@ namespace LucidOcean.RuleEngine
 
                 service.WaitIfPaused(action); // check if paused before and after we execute.
 
+                _State.Context.Runtime.UpdateProgress(i);
+
                 ExecuteServiceForAction(service, action);
+
                 _State.Context.Runtime.LastRunAction = action;
 
                 service.WaitIfPaused(action);
@@ -109,6 +115,8 @@ namespace LucidOcean.RuleEngine
                 }
             }
 
+            _State.Context.Runtime.EndProgress();
+
             _State.Context.Runtime.ResetRuntimeState();
         }
 
@@ -120,11 +128,13 @@ namespace LucidOcean.RuleEngine
 
             try
             {
+                ThrowBeforeExecute(action, new ActionRuntimeEventArgs());
                 service.Execute(action);
+                ThrowAfterExecute(action, new ActionRuntimeEventArgs());
             }
             catch (Exception ex)
             {
-                action.LastException = new ActionException("ActionRuntimeExecutor Failed. See inner exception for details.", ex);
+                action.LastException = new RuleActionException("ActionRuntimeExecutor Failed. See inner exception for details.", ex);
                 action.Status = ActionStatus.Errored;
 
                 if (action.Status == ActionStatus.Errored)
@@ -164,6 +174,22 @@ namespace LucidOcean.RuleEngine
             if (ProgressStart != null)
             {
                 ProgressStart(sender, e);
+            }
+        }
+
+        void ThrowBeforeExecute(object sender, ActionRuntimeEventArgs e)
+        {
+            if (BeforeExecute != null)
+            {
+                BeforeExecute(sender, e);
+            }
+        }
+
+        void ThrowAfterExecute(object sender, ActionRuntimeEventArgs e)
+        {
+            if (AfterExecute != null)
+            {
+                AfterExecute(sender, e);
             }
         }
 

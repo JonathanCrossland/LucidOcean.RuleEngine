@@ -15,7 +15,7 @@ namespace LucidOcean.RuleEngine
     public abstract class ActionBase : IAction
     {
         
-        private ActionException _Exception;
+        private RuleActionException _Exception;
         private ActionStatus    _Status;
         private string          _Name;
         private ActionContext   _Context;
@@ -53,7 +53,7 @@ namespace LucidOcean.RuleEngine
 
             if (_Context.Runtime.Aborting)
             {
-                throw new ActionException("This Action has been Aborted, due to Abort being called by the Runtime.");
+                throw new RuleActionException("This Action has been Aborted, due to Abort being called by the Runtime.");
             }
             
         }
@@ -89,7 +89,7 @@ namespace LucidOcean.RuleEngine
         /// Set this to a valid Exception when it occurs.
         /// </summary>
         /// <returns></returns>
-        public virtual ActionException LastException
+        public virtual RuleActionException LastException
         {
             get
             {

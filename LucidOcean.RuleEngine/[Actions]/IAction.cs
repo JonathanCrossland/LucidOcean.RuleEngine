@@ -23,7 +23,7 @@ namespace LucidOcean.RuleEngine
 
         LucidOcean.RuleEngine.Context.ActionContext Context { get; set; }
 
-        LucidOcean.RuleEngine.ActionException LastException { get; set; }
+        LucidOcean.RuleEngine.RuleActionException LastException { get; set; }
 
         string Name { get; }
 

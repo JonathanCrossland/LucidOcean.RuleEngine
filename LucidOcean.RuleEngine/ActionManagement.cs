@@ -53,7 +53,6 @@ namespace LucidOcean.RuleEngine
         {
 
             _Configuration = ActionRuntimeSection.CreateInstance();
-            //_ActionContext = ActionContext.CreateInstance();
             _ActionContext = new ActionContext();
 
             _State = new ActionRuntimeState(_ActionContext, _Configuration);

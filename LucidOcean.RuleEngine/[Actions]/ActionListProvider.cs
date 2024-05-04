@@ -36,8 +36,6 @@ namespace LucidOcean.RuleEngine
                         {
                             //lets ignore hashtable duplicates error.
                         }
-                        else
-                            throw ex;
                     }
 
                     actions.Add(action);

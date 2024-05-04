@@ -78,7 +78,7 @@ namespace LucidOcean.RuleEngine.Services
             }
             catch (Exception ex)
             {
-                throw new ActionException("Check inner Exception for details", ex);
+                throw new RuleActionException("Check inner Exception for details", ex);
             }
         }
         

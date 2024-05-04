@@ -4,6 +4,8 @@ namespace Example
 {
     public class CalculationAction : CompositeAction
     {
+
+        
         public override void Execute(LucidOcean.RuleEngine.Context.ActionContext context)
         {
          

@@ -9,6 +9,7 @@ using System;
 using System.Collections;
 using System.Diagnostics;
 using System.Reflection;
+using System.Runtime.InteropServices;
 using LucidOcean.RuleEngine.Configuration;
 using LucidOcean.RuleEngine.Services;
 
@@ -64,9 +65,9 @@ namespace LucidOcean.RuleEngine
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                throw new RuleActionException($"CreateAction ", ex);
             }
 
             return (ActionBase)obj;
@@ -94,9 +95,7 @@ namespace LucidOcean.RuleEngine
             }
             catch (Exception ex)
             {
-                EventLog.WriteEntry("CreateInstance", "Failed on " + ex.Message);
-                return null;
-
+                throw new RuleEngineException($"CreateAction ${assemblyName}:${typeName}", ex);
             }
         }
 
@@ -116,9 +115,9 @@ namespace LucidOcean.RuleEngine
                     obj = CreateActionInstance(aryAssemblyType[1], aryAssemblyType[0]);
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                throw new RuleRuntimeException($"CreateActionService ", ex);
             }
 
             return (RuntimeService)obj;
@@ -140,9 +139,7 @@ namespace LucidOcean.RuleEngine
             }
             catch (Exception ex)
             {
-                EventLog.WriteEntry("CreateInstance", "Failed on " + ex.Message);
-                return null;
-
+                throw new RuleActionException($"CreateAction ", ex);
             }
         }
 
@@ -162,9 +159,7 @@ namespace LucidOcean.RuleEngine
             }
             catch (Exception ex)
             {
-                EventLog.WriteEntry("CreateInstance", "Failed on " + ex.Message);
-                return null;
-
+                throw new RuleActionException($"CreateInstance", ex);
             }
         }
         /// <summary>

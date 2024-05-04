@@ -65,18 +65,16 @@ namespace LucidOcean.RuleEngine.Context
                 }
             }
 
-            UpdateProgress(value);
         }
 
         public void UpdateProgress(int value)
         {
-            if (value > 0)
+            
+            if (Progress != null)
             {
-                if (Progress != null)
-                {
-                    Progress(this, new ProgressEventArgs(value));
-                }
+                Progress(this, new ProgressEventArgs(value));
             }
+           
         }
 
         public void EndProgress()

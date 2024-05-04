@@ -8,15 +8,19 @@ namespace Example
     {
         static void Main(string[] args)
         {
-            //BasicExample();
+            BasicExample();
 
             FileWritingExample();
         }
 
         private static void FileWritingExample()
         {
-           
-            
+
+            //By default ActionManagement is a singleton, which will last across usecases. The state is remembered from one call to another.
+            //if you want a whole new runtime with new state, remember to destroy the previous instance
+            //this seems strange at first, but in certain contexts where state should persist over multiple contexts, it is a simple pattern.
+            ActionManagement.DestroyInstance();
+
             ActionManagement man = ActionManagement.CreateInstance();
             //clear the config actions as we dont need them for this example.
             man.Configuration.Actions.Clear();
@@ -27,7 +31,6 @@ namespace Example
             actionElement1.Name = "Start";
             actionElement1.TypeName = "Example.FileReadAction, Example";
             man.Configuration.Actions.Add(actionElement1);
-
          
             
             //lets add 10 of them
@@ -76,6 +79,9 @@ namespace Example
             //add context and run
             man.ActionContext.Properties["x1"] = 1;
             man.ActionContext.Properties["x2"] = 8;
+            man.Runtime.Progress += Runtime_Progress;
+            man.Runtime.BeforeExecute += Runtime_BeforeExecute;
+            man.Runtime.AfterExecute += Runtime_AfterExecute;
             man.Runtime.Start();
 
 
@@ -86,6 +92,21 @@ namespace Example
                 int.TryParse(val.ToString(), out calc);
 
             }
+        }
+
+        private static void Runtime_Progress(object sender, ProgressEventArgs e)
+        {
+            Console.WriteLine(e.Value.ToString());
+        }
+
+        private static void Runtime_AfterExecute(object sender, ActionRuntimeEventArgs e)
+        {
+            Console.WriteLine("After Execute");
+        }
+
+        private static void Runtime_BeforeExecute(object sender, ActionRuntimeEventArgs e)
+        {
+            Console.WriteLine("Before Execute");
         }
     }
 }

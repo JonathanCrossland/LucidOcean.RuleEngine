@@ -12,7 +12,7 @@ namespace LucidOcean.RuleEngine
     public class ActionRuntime : IActionRuntimeExecutor
     {
 		
-        private ActionException         _Exception;
+        private RuleEngineException _Exception;
         private ActionRuntimeExecutor   _Executor;
         private ActionRuntimeState      _State;
         private ActionStatus            _Status;
@@ -22,7 +22,7 @@ namespace LucidOcean.RuleEngine
         {
 
             if (state == null)
-                throw new ActionException("Parameter ActionRuntimeState state cannot be null");
+                throw new RuleRuntimeException("Parameter ActionRuntimeState state cannot be null");
 
             _State = state;
             Status = ActionStatus.Ready;
@@ -51,7 +51,7 @@ namespace LucidOcean.RuleEngine
                 _Executor.BeforeExecute -= new EventHandler<ActionRuntimeEventArgs>(_Executor_BeforeExecute);
                 _Executor.AfterExecute -= new EventHandler<ActionRuntimeEventArgs>(_Executor_AfterExecute);
                 _Executor.OnException -= new EventHandler<ActionRuntimeEventArgs>(_Executor_OnException);
-                //_Executor.Pausing += new EventHandler<ActionRuntimeEventArgs>(_Executor_Pausing);
+                //_Executor.Pausing -= new EventHandler<ActionRuntimeEventArgs>(_Executor_Pausing);
 
                 _Executor.ProgressStart -= new EventHandler<ProgressStartEventArgs>(_Executor_ProgressStart);
                 _Executor.Progress -= new EventHandler<ProgressEventArgs>(_Executor_Progress);
@@ -99,7 +99,7 @@ namespace LucidOcean.RuleEngine
         /// Set this to a valid Exception when it occurs.
         /// </summary>
         /// <returns></returns>
-        public virtual ActionException LastException
+        public virtual RuleEngineException LastException
         {
             get
             {
@@ -205,6 +205,7 @@ namespace LucidOcean.RuleEngine
                 Initialize();
 
                 ThrowStarted(this, new ActionRuntimeEventArgs());
+
                 _Status = ActionStatus.Busy;
 
                 //MAIN RUN START
@@ -234,7 +235,7 @@ namespace LucidOcean.RuleEngine
             catch (Exception ex)
             {
                 _State.Context.WriteToLog(ex.Message);
-                LastException = new ActionException("Action Execute Failed. See inner exception for details.", ex);
+                LastException = new RuleRuntimeException("Action Execute Failed. See inner exception for details.", ex);
                 Status = ActionStatus.Errored;
 
                 if (OnException != null)
@@ -314,7 +315,7 @@ namespace LucidOcean.RuleEngine
             catch (Exception ex)
             {
                 _State.Context.WriteToLog(ex.Message);
-                LastException = new ActionException("Action Execute Failed. See inner exception for details.", ex); ;
+                LastException = new RuleRuntimeException("Action Execute Failed. See inner exception for details.", ex); ;
                 Status = ActionStatus.Errored;
             }
         }
@@ -340,6 +341,15 @@ namespace LucidOcean.RuleEngine
             ThrowPaused(this, new ActionRuntimeEventArgs(action));
         }
 
+        internal void RaiseBeforeExecuteEvent(IAction action)
+        {
+            ThrowBeforeExecute(this, new ActionRuntimeEventArgs(action));
+        }
+
+        internal void RaiseAfterExecuteEvent(IAction action)
+        {
+            ThrowAfterExecute(this, new ActionRuntimeEventArgs(action));
+        }
 
         private void ThrowAborted(object sender, ActionRuntimeEventArgs e)
         {
@@ -351,7 +361,7 @@ namespace LucidOcean.RuleEngine
             catch (Exception ex)
             {
                 _State.Context.WriteToLog(ex.Message);
-                throw new ActionException("Aborted event handler caused an Exception", ex);
+                throw new RuleRuntimeException("Aborted event handler caused an Exception", ex);
             }
         }
         private void ThrowAborting(object sender, ActionRuntimeEventArgs e)
@@ -364,7 +374,7 @@ namespace LucidOcean.RuleEngine
             catch (Exception ex)
             {
                 _State.Context.WriteToLog(ex.Message);
-                throw new ActionException("Aborted event handler caused an Exception", ex);
+                throw new RuleRuntimeException("Aborted event handler caused an Exception", ex);
             }
         }
         private void ThrowAfterExecute(object sender, ActionRuntimeEventArgs e)
@@ -377,7 +387,7 @@ namespace LucidOcean.RuleEngine
             catch (Exception ex)
             {
                 _State.Context.WriteToLog(ex.Message);
-                throw new ActionException("AfterExecute event handler caused an Exception", ex);
+                throw new RuleRuntimeException("AfterExecute event handler caused an Exception", ex);
             }
         }
         private void ThrowBeforeExecute(object sender, ActionRuntimeEventArgs e)
@@ -390,7 +400,7 @@ namespace LucidOcean.RuleEngine
             catch (Exception ex)
             {
                 _State.Context.WriteToLog(ex.Message);
-                throw new ActionException("BeforeExecute event handler caused an Exception", ex);
+                throw new RuleRuntimeException("BeforeExecute event handler caused an Exception", ex);
             }
         }
         private void ThrowOnComplete(object sender, ActionRuntimeEventArgs e)
@@ -403,7 +413,7 @@ namespace LucidOcean.RuleEngine
             catch (Exception ex)
             {
                 _State.Context.WriteToLog(ex.Message);
-                throw new ActionException("OnComplete event handler caused an Exception", ex);
+                throw new RuleRuntimeException("OnComplete event handler caused an Exception", ex);
             }
         }
         private void ThrowPaused(object sender, ActionRuntimeEventArgs e)
@@ -416,7 +426,7 @@ namespace LucidOcean.RuleEngine
             catch (Exception ex)
             {
                 _State.Context.WriteToLog(ex.Message);
-                throw new ActionException("Paused event handler caused an Exception", ex);
+                throw new RuleRuntimeException("Paused event handler caused an Exception", ex);
             }
         }
         private void ThrowProgress(object sender, ProgressEventArgs e)
@@ -429,7 +439,7 @@ namespace LucidOcean.RuleEngine
             catch (Exception ex)
             {
                 _State.Context.WriteToLog(ex.Message);
-                throw new ActionException("AfterExecute event handler caused an Exception", ex);
+                throw new RuleRuntimeException("AfterExecute event handler caused an Exception", ex);
             }
         }
         private void ThrowProgressEnd(object sender, ProgressEndEventArgs e)
@@ -442,7 +452,7 @@ namespace LucidOcean.RuleEngine
             catch (Exception ex)
             {
                 _State.Context.WriteToLog(ex.Message);
-                throw new ActionException("AfterExecute event handler caused an Exception", ex);
+                throw new RuleRuntimeException("AfterExecute event handler caused an Exception", ex);
             }
         }
         private void ThrowProgressStart(object sender,  ProgressStartEventArgs e)
@@ -455,7 +465,7 @@ namespace LucidOcean.RuleEngine
             catch (Exception ex)
             {
                 _State.Context.WriteToLog(ex.Message);
-                throw new ActionException("AfterExecute event handler caused an Exception", ex);
+                throw new RuleRuntimeException("AfterExecute event handler caused an Exception", ex);
             }
         }
         private void ThrowStarted(object sender, ActionRuntimeEventArgs e)
@@ -468,7 +478,7 @@ namespace LucidOcean.RuleEngine
             catch (Exception ex)
             {
                 _State.Context.WriteToLog(ex.Message);
-                throw new ActionException("Started event handler caused an Exception", ex);
+                throw new RuleRuntimeException("Started event handler caused an Exception", ex);
             }
         }
         private void ThrowStopped(object sender, ActionRuntimeEventArgs e)
@@ -482,7 +492,7 @@ namespace LucidOcean.RuleEngine
             catch (Exception ex)
             {
                 _State.Context.WriteToLog(ex.Message);
-                throw new ActionException("Stopped event handler caused an Exception", ex);
+                throw new RuleRuntimeException("Stopped event handler caused an Exception", ex);
             }
         }
        
