@@ -11,8 +11,6 @@ using System.Collections.Generic;
 
 namespace LucidOcean.RuleEngine
 {
-    
-
     public class ProgressEndEventArgs : ProgressEventArgs
     {
         public ProgressEndEventArgs(int value)

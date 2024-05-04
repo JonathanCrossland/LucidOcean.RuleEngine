@@ -9,7 +9,6 @@ namespace LucidOcean.RuleEngine.Context
 {
     public interface IConfigurationAccessor
     {
-	
         string GetValue(string settingName);
 
         bool SetValue(string settingName, string value);

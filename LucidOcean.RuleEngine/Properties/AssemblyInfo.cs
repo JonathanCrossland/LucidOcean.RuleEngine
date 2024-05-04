@@ -7,9 +7,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("LucidOcean.RuleEngine")]
 [assembly: AssemblyDescription("LucidOcean Rule Engine")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Lucid Ocean")]
+[assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("LucidOcean.RuleEngine")]
-[assembly: AssemblyCopyright("Copyright © Lucid Ocean. All Rights Reserved.")]
+[assembly: AssemblyCopyright("Copyright © Jonathan Crossland. All Rights Reserved.")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -30,6 +30,6 @@ using System.Runtime.InteropServices;
 //
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
-[assembly: AssemblyFileVersion("2021.11.0.0")]
-[assembly: AssemblyInformationalVersion("2021.11.0.0")]
-[assembly: AssemblyVersion("2021.11.0.0")]
+[assembly: AssemblyFileVersion("1.0.0.0")]
+[assembly: AssemblyInformationalVersion("1.0.0.0")]
+[assembly: AssemblyVersion("1.0.0.0")]

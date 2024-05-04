@@ -10,8 +10,6 @@ using LucidOcean.RuleEngine.Configuration;
 using LucidOcean.RuleEngine.Context;
 using LucidOcean.RuleEngine.Services;
 
-
-
 namespace LucidOcean.RuleEngine
 {
     internal class ActionRuntimeState

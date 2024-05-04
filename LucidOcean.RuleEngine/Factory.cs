@@ -7,9 +7,7 @@ The license is on the root of the main source-code directory.
 
 using System;
 using System.Collections;
-using System.Diagnostics;
 using System.Reflection;
-using System.Runtime.InteropServices;
 using LucidOcean.RuleEngine.Configuration;
 using LucidOcean.RuleEngine.Services;
 
@@ -17,7 +15,7 @@ using LucidOcean.RuleEngine.Services;
 namespace LucidOcean.RuleEngine
 {
     /// <summary>
-    /// 
+    /// Creates Types with Reflection. Creates Actions, Services, Providers etc
     /// </summary>
     public static class Factory
     {
@@ -123,6 +121,13 @@ namespace LucidOcean.RuleEngine
             return (RuntimeService)obj;
         }
 
+        /// <summary>
+        /// Generic creation of an Action type, passing in ActionManagement
+        /// </summary>
+        /// <param name="assemblyName"></param>
+        /// <param name="typeName"></param>
+        /// <returns></returns>
+        /// <exception cref="RuleActionException"></exception>
         public static Object CreateActionInstance(string assemblyName, string typeName)
         {
             try
@@ -143,6 +148,13 @@ namespace LucidOcean.RuleEngine
             }
         }
 
+        /// <summary>
+        /// Generic creation of a type
+        /// </summary>
+        /// <param name="assemblyName"></param>
+        /// <param name="typeName"></param>
+        /// <returns></returns>
+        /// <exception cref="RuleActionException"></exception>
         public static Object CreateInstance(string assemblyName, string typeName)
         {
             try
@@ -162,6 +174,7 @@ namespace LucidOcean.RuleEngine
                 throw new RuleActionException($"CreateInstance", ex);
             }
         }
+
         /// <summary>
         /// Gets an instance from the cache
         /// </summary>
@@ -202,8 +215,11 @@ namespace LucidOcean.RuleEngine
             return assemblyString.Split(new Char[] { ',' }, 2, StringSplitOptions.RemoveEmptyEntries);
         }
 
-		
-    
+        /// <summary>
+        /// Cretaes the ActionListProvider or a default
+        /// </summary>
+        /// <param name="typeName"></param>
+        /// <returns></returns>
         public static ActionListProvider CreateActionListProvider(string typeName)
         {
             string[] aryAssemblyType = GetAssemblyAndTypeAsStringArray(typeName);

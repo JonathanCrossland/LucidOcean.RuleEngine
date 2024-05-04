@@ -11,8 +11,6 @@ using System.Collections.Generic;
 
 namespace LucidOcean.RuleEngine
 {
-    
-
     public class ActionRuntimeEventArgs : EventArgs
     {
 
@@ -49,7 +47,6 @@ namespace LucidOcean.RuleEngine
     {
       
         private List<IAction> _Actions;
-
 
         public RuntimeEventArgs(List<IAction> state)
         {

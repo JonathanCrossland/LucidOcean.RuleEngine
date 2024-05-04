@@ -6,10 +6,8 @@ The license is on the root of the main source-code directory.
 =====================================================================*/
 namespace LucidOcean.RuleEngine.Services
 {
-
     public class CompositeService : RuntimeService
     {
-
         public CompositeService(ActionManagement actionManagement)
             : base(actionManagement)
         {

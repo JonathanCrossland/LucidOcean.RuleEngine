@@ -9,7 +9,10 @@ namespace LucidOcean.RuleEngine
 {
     public abstract class TransactionalAction : CompositeAction
     {
-		
+        private bool _IsInTransaction;
+        private int _TransactionTimeOut = 0;
+
+        public const int TransactionTimeoutDefault = 10;
 
         public override void Initialize(LucidOcean.RuleEngine.Context.ActionContext context)
         {
@@ -23,17 +26,6 @@ namespace LucidOcean.RuleEngine
             if (timeout <= 0)
                 _TransactionTimeOut = TransactionTimeoutDefault;
         }
-
-	
-
-        public const int TransactionTimeoutDefault = 10;
-
-     
-
-        private bool _IsInTransaction;
-        private int _TransactionTimeOut = 0;
-
-   
 
         /// <summary>
         /// TransactionTimeout in Seconds. Default is 10
@@ -67,7 +59,5 @@ namespace LucidOcean.RuleEngine
                 _IsInTransaction = value;
             }
         }
-
-    
     }
 }

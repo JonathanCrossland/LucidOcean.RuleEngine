@@ -12,7 +12,6 @@ namespace LucidOcean.RuleEngine
 {
     public class ActionListProvider
     {
-		
         public virtual ActionListCollection BuildActionsCollection(Configuration.ActionRuntimeSection runtimeConfig, ActionContext context)
         {
             ActionListCollection actions = new ActionListCollection();
@@ -44,7 +43,5 @@ namespace LucidOcean.RuleEngine
 
             return actions;
         }
-
-
     }
 }

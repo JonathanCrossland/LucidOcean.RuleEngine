@@ -9,11 +9,8 @@ namespace LucidOcean.RuleEngine
 {
     public abstract class GoToAction : ActionBase
     {
-		
         public abstract bool Evaluate();
-
         public abstract string GetActionName();
-
 		
     }
 }

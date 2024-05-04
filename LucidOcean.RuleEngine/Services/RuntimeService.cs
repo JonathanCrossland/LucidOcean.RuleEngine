@@ -126,7 +126,5 @@ namespace LucidOcean.RuleEngine.Services
                 _IsComplete = value;
             }
         }
-
-        
     }
 }

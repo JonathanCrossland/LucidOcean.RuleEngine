@@ -1,4 +1,11 @@
-﻿using System;
+﻿/*=====================================================================
+Authors: Jonathan Crossland
+Copyright © Jonathan Crossland. All Rights Reserved.
+
+The license is on the root of the main source-code directory.
+=====================================================================*/
+
+using System;
 
 namespace LucidOcean.RuleEngine
 {
@@ -9,7 +16,6 @@ namespace LucidOcean.RuleEngine
         public RuleEngineException() { }
         public RuleEngineException(string message) : base(message) { }
         public RuleEngineException(string message, Exception inner) : base(message, inner) { }
-      
     }
 
     [System.Serializable]
@@ -18,8 +24,6 @@ namespace LucidOcean.RuleEngine
         public RuleActionException() { }
         public RuleActionException(string message) : base(message) { }
         public RuleActionException(string message, Exception inner) : base(message, inner) { }
-      
-
     }
 
     [System.Serializable]
@@ -28,8 +32,6 @@ namespace LucidOcean.RuleEngine
         public RuleRuntimeException() { }
         public RuleRuntimeException(string message) : base(message) { }
         public RuleRuntimeException(string message, Exception inner) : base(message, inner) { }
-       
-
     }
 
     [System.Serializable]
@@ -38,9 +40,5 @@ namespace LucidOcean.RuleEngine
         public RuleProviderException() { }
         public RuleProviderException(string message) : base(message) { }
         public RuleProviderException(string message, Exception inner) : base(message, inner) { }
-      
-       
-
     }
-
 }

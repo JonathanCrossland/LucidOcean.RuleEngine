@@ -8,7 +8,6 @@ The license is on the root of the main source-code directory.
 using System;
 using System.Transactions;
 
-
 namespace LucidOcean.RuleEngine.Services
 {
     /// <summary>
@@ -20,6 +19,10 @@ namespace LucidOcean.RuleEngine.Services
     public class TransactionalService : CompositeService
     {
 		
+        /// <summary>
+        /// Executes all items on the action
+        /// </summary>
+        /// <param name="transAction"></param>
         private void ExecuteItems(TransactionalAction transAction)
         {
             foreach (TransactionalAction actionItem in transAction.Items)
@@ -46,7 +49,6 @@ namespace LucidOcean.RuleEngine.Services
         {
 
         }
-
 
         /// <summary>
         /// requires MSDTC to be running, Uses transactional support with SQL Server.
@@ -81,6 +83,5 @@ namespace LucidOcean.RuleEngine.Services
                 throw new RuleActionException("Check inner Exception for details", ex);
             }
         }
-        
     }
 }

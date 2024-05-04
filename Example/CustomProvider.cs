@@ -1,4 +1,11 @@
-﻿using LucidOcean.RuleEngine;
+﻿/*=====================================================================
+Authors: Jonathan Crossland
+Copyright © Jonathan Crossland. All Rights Reserved.
+
+The license is on the root of the main source-code directory.
+=====================================================================*/
+
+using LucidOcean.RuleEngine;
 using LucidOcean.RuleEngine.Configuration;
 using LucidOcean.RuleEngine.Context;
 

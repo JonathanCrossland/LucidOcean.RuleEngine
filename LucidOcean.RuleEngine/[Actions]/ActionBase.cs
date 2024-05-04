@@ -9,7 +9,6 @@ using System.Threading;
 using System.Collections.Generic;
 using LucidOcean.RuleEngine.Context;
 
-
 namespace LucidOcean.RuleEngine
 {
     public abstract class ActionBase : IAction
@@ -20,7 +19,6 @@ namespace LucidOcean.RuleEngine
         private string          _Name;
         private ActionContext   _Context;
         
-
         /// <summary>
         /// All Actions will be initialized first, before any actions are executed.
         /// </summary>
@@ -120,6 +118,9 @@ namespace LucidOcean.RuleEngine
 
         }
      
+        /// <summary>
+        /// 
+        /// </summary>
         List<IAction> IAction.Items
         {
             get

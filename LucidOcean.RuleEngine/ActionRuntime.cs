@@ -319,7 +319,6 @@ namespace LucidOcean.RuleEngine
                 Status = ActionStatus.Errored;
             }
         }
-
 	
         internal void RaiseAborting(IAction action)
         {

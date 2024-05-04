@@ -10,13 +10,11 @@ using System.Collections;
 
 namespace LucidOcean.RuleEngine.Context
 {
-    
     public partial class ActionContext //partial containing static members
     {
       
         private static volatile ActionContext _ActionContext;
         private static object syncRoot = new object();
-
 
         public static void DestroyInstance()
         {
@@ -32,9 +30,7 @@ namespace LucidOcean.RuleEngine.Context
         private Hashtable _Properties;
         private IConfigurationAccessor _IConfiguration;
         private ActionBase _LastRunAction;
-
         public event EventHandler<ActionLogEventArgs> OnWriteToLog;
-
 
         public void WriteToLog(string value)
         {
@@ -48,7 +44,6 @@ namespace LucidOcean.RuleEngine.Context
             _IConfiguration = new AppSettingsAdaptor();
         }
        
-
         /// <summary>
         /// 
         /// </summary>
@@ -80,7 +75,6 @@ namespace LucidOcean.RuleEngine.Context
                 _Runtime = value;
             }
         }
-
      
         /// <summary>
         /// 
@@ -91,8 +85,6 @@ namespace LucidOcean.RuleEngine.Context
             {
                 return (IConfigurationAccessor)_IConfiguration;
             }
-        }
-
-        
+        }                
     }
 }

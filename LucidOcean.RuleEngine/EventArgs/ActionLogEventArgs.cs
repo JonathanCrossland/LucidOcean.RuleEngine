@@ -14,7 +14,6 @@ namespace LucidOcean.RuleEngine
 
         private string _Value;
 
-
         public ActionLogEventArgs(string value)
         {
             _Value = value;

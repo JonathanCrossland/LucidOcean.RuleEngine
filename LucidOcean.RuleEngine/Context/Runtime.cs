@@ -7,17 +7,14 @@ The license is on the root of the main source-code directory.
 
 using System;
 
-
 namespace LucidOcean.RuleEngine.Context
 {
     public class Runtime
     {
 	
-
         internal event EventHandler<ProgressEventArgs> Progress;
         internal event EventHandler<ProgressEndEventArgs> ProgressEnd;
         internal event EventHandler<ProgressStartEventArgs> ProgressStart;
-
 
         private bool _Aborting;
         private bool _Stopping;
@@ -37,7 +34,6 @@ namespace LucidOcean.RuleEngine.Context
             _Paused = false; ;
             _Stopping = true;
         }
-
         public void Pause()
         {
             _Paused = true;

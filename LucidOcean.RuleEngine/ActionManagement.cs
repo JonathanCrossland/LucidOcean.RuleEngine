@@ -99,7 +99,7 @@ namespace LucidOcean.RuleEngine
         }
 
         /// <summary>
-        /// 
+        /// This is the App.Config/Web.Config
         /// </summary>
         public Configuration.ActionRuntimeSection Configuration
         {

@@ -6,8 +6,6 @@ The license is on the root of the main source-code directory.
 =====================================================================*/
 
 using System;
-using System.Collections.Generic;
-
 
 namespace LucidOcean.RuleEngine
 {
@@ -20,7 +18,6 @@ namespace LucidOcean.RuleEngine
         {
             _Value = value;
         }
-
 
         /// <summary>
         /// 
@@ -37,8 +34,5 @@ namespace LucidOcean.RuleEngine
             }
         }
 
-    }
-
-    
-
+    } 
 }
